@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import * as moment from 'moment'
 import './App.css'
 
 import axios from 'axios'
@@ -16,19 +17,26 @@ class App extends Component {
     const filteredData = []
     axios.get(url).then(response => response.data)
     .then((data) => {
-      const sols = data['sol_keys']
-      console.log(sols)
-      for (const sol in data) {
-        if (sols.indexOf(sol) > -1) {
-          console.log('Sol: ' + sol)
-          console.log('Date: ' + data[sol]['First_UTC'])
-          console.log('Temp: ' + data[sol]['AT']['av'] + " F")
-          console.log('--------------------------------------------')
-          // filteredData[sol] = {
-          //   date: data[sol]['First_UTC'],
-          //   temp: data[sol]['AT']['av']``
-          // }
+      filterData()
+      
+      function filterData() {
+        const sols = data['sol_keys']
+        console.log(sols)
+        for (const sol in data) {
+          let i = 0
+          if (sols.indexOf(sol) > -1) {
+            // console.log('Sol: ' + sol)
+            // console.log('Date: ' + data[sol]['First_UTC'])
+            // console.log('Temp: ' + data[sol]['AT']['av'] + " F")
+            // console.log('--------------------------------------------')
+            filteredData.push({
+              sol: `${sol}`,
+              date: data[sol]['First_UTC'],
+              temp: data[sol]['AT']['av']
+            })
+          }
         }
+        console.log(filteredData)
       }
 
       this.setState({
@@ -54,8 +62,9 @@ class App extends Component {
               const { sol, date, temp } = marstemp
               return (
                 <div key={sol}>
-                  <h2>{date}}</h2>
-                  <p>{temp}</p>
+                  <h2>Sol: {sol}</h2>
+                  <p>Earth date: {moment(date).format('LLLL')}</p>
+                  <p>Temperature: {temp} Fahrenheit</p>
                 </div>
               )
             })
