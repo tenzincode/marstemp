@@ -7,42 +7,35 @@ const API_URL = 'https://api.nasa.gov/insight_weather/?api_key=REMOVED_API_KEY&f
 class App extends Component {
   state = {
     marsdata: [],
-    sols: [],
-    dates: [],
-    temps: [],
     isLoading: true,
     errors: null
   }
 
   componentDidMount() {
     const url = `${API_URL}`
+    const filteredData = []
     axios.get(url).then(response => response.data)
     .then((data) => {
-      let filteredTemps = []
-      let filteredDates = []
-
-      // JSON filter temperatures
-      for (var x in data) {
-        if (data['sol_keys'].indexOf(x) > -1) {
-          filteredTemps.push(data[x]['AT']['av'])
-        }
-      }
-
-      // JSON filter earth dates
-      for (var y in data) {
-        if (data['sol_keys'].indexOf(y) > -1) {
-          filteredDates.push(data[y]['First_UTC'])
+      const sols = data['sol_keys']
+      console.log(sols)
+      for (const sol in data) {
+        if (sols.indexOf(sol) > -1) {
+          console.log('Sol: ' + sol)
+          console.log('Date: ' + data[sol]['First_UTC'])
+          console.log('Temp: ' + data[sol]['AT']['av'] + " F")
+          console.log('--------------------------------------------')
+          // filteredData[sol] = {
+          //   date: data[sol]['First_UTC'],
+          //   temp: data[sol]['AT']['av']``
+          // }
         }
       }
 
       this.setState({
-        marsdata: data,
-        sols: data['sol_keys'],
-        temps: filteredTemps,
-        dates: filteredDates,
+        marsdata: filteredData,
         isLoading: false
       })
-      //console.log(this.state.marsdata)
+      console.log(this.state.marsdata)
     })
 
     .catch(error => this.setState({ error, isLoading: false }))
@@ -50,27 +43,22 @@ class App extends Component {
   
   render() {
     const marsdata = this.state.marsdata
-    const sols = this.state.sols
-    const temps = this.state.temps
-    const dates = this.state.dates
     const isLoading = this.state.isLoading
-    
-    console.log('sols:')
-    console.log(sols)
-    console.log('temps:')
-    console.log(temps)
-    console.log('dates:')
-    console.log(dates)
     
     return (
       <React.Fragment>
         <div>
+          <h1>Mars Temps</h1>
           {!isLoading ? (
-            <div>
-              <h1>Mars Temps</h1>
-              
-              {temps}
-            </div>
+            marsdata.map(marstemp => {
+              const { sol, date, temp } = marstemp
+              return (
+                <div key={sol}>
+                  <h2>{date}}</h2>
+                  <p>{temp}</p>
+                </div>
+              )
+            })
           ) : (
             <p>Loading...</p>
           )}
