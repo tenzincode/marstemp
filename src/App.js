@@ -13,6 +13,9 @@ class App extends Component {
     errors: null
   }
 
+  /**
+   * Function to filter data retrieved by axios into workable array of data
+   */
   filterData() {
     const url = `${API_URL}`
     const filteredData = []
@@ -44,8 +47,40 @@ class App extends Component {
     .catch(error => this.setState({ error, isLoading: false }))
   }
 
+  /**
+   * Function to handle hamburger menu action
+   */
+  initNavMenu() {
+    document.addEventListener('DOMContentLoaded', () => {
+
+      // Get all "navbar-burger" elements
+      const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+    
+      // Check if there are any navbar burgers
+      if ($navbarBurgers.length > 0) {
+    
+        // Add a click event on each of them
+        $navbarBurgers.forEach( el => {
+          el.addEventListener('click', () => {
+    
+            // Get the target from the "data-target" attribute
+            const target = el.dataset.target;
+            const $target = document.getElementById(target);
+    
+            // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+            el.classList.toggle('is-active');
+            $target.classList.toggle('is-active');
+    
+          });
+        });
+      }
+    
+    });
+  }
+
   componentDidMount() {
     this.filterData()
+    this.initNavMenu()
   }
   
   render() {
@@ -54,27 +89,70 @@ class App extends Component {
     
     return (
       <React.Fragment>
-        <section className="hero">
-          <div className="hero-body">
-            <div className="container">
-              <h1 className="title is-1">Mars Temps</h1>
+        {/* START NAV */}
+        <nav className="navbar">
+          <div className="container">
+            <div className="navbar-brand">
+              <a href="/" className="navbar-item">
+                <h1 className="title">MARŠTEMP</h1>
+              </a>
+              <span role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navMenu">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+              </span>
+            </div>
+            <div id="navMenu" className="navbar-menu">
+              <div className="navbar-end">
+                <a href="/" className="navbar-item is-active">
+                  Home
+                </a>
+                <a href="/" className="navbar-item">
+                  Data Visualizations
+                </a>
+                <a href="/" className="navbar-item">
+                  Documentation
+                </a>
+                <span className="navbar-item">
+                  <a href="https://github.com/citizenofearth/marstemp.git" target="_blank" rel="noopener noreferrer" className="button is-success is-inverted">
+                    <span className="icon">
+                      <i className="ion-ionic"></i>
+                    </span>
+                    <span>Code</span>
+                  </a>
+                </span>
+              </div>
+            </div>
+          </div>
+        </nav>
+        {/* END NAV */}
+
+        <div className="container">
+          <section className="articles row columns">
+            <div className="column is-8 is-offset-2">
               {!isLoading ? (
                 marsdata.map(marstemp => {
                   const { sol, date, temp } = marstemp
                   return (
-                    <div className="box sol has-text-white" key={sol}>
-                      <h2>Sol: {sol}</h2>
-                      <p>Earth date: {moment(date).format('LLLL')}</p>
-                      <p>Temperature: {temp} °Fahrenheit</p>
+                    /* START ARTICLE */
+                    <div className="card article" key={sol}>
+                      <div className="card-content" key={sol}>
+                        <div className="sol" key={sol}>
+                          <h2>Sol: {sol}</h2>
+                          <p>Earth date: {moment(date).format('LLLL')}</p>
+                          <p>Temperature: {temp} °Fahrenheit</p>
+                        </div>
+                      </div>
                     </div>
+                    /* END ARTICLE */
                   )
                 })
               ) : (
                 <p>Loading...</p>
               )}
             </div>
-          </div>
-        </section>
+          </section>
+        </div>
       </React.Fragment>
     )
   }
