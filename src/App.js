@@ -12,41 +12,39 @@ class App extends Component {
     errors: null
   }
 
-  componentDidMount() {
+  filterData() {
     const url = `${API_URL}`
     const filteredData = []
+
     axios.get(url).then(response => response.data)
     .then((data) => {
-      filterData()
-      
-      function filterData() {
-        const sols = data['sol_keys']
-        console.log(sols)
-        for (const sol in data) {
-          let i = 0
-          if (sols.indexOf(sol) > -1) {
-            // console.log('Sol: ' + sol)
-            // console.log('Date: ' + data[sol]['First_UTC'])
-            // console.log('Temp: ' + data[sol]['AT']['av'] + " F")
-            // console.log('--------------------------------------------')
-            filteredData.push({
-              sol: `${sol}`,
-              date: data[sol]['First_UTC'],
-              temp: data[sol]['AT']['av']
-            })
-          }
+      const sols = data['sol_keys']
+      console.log(sols)
+      for (const sol in data) {
+        if (sols.indexOf(sol) > -1) {
+          // console.log('Sol: ' + sol)
+          // console.log('Date: ' + data[sol]['First_UTC'])
+          // console.log('Temp: ' + data[sol]['AT']['av'] + " F")
+          // console.log('--------------------------------------------')
+          filteredData.push({
+            sol: `${sol}`,
+            date: data[sol]['First_UTC'],
+            temp: data[sol]['AT']['av']
+          })
         }
-        console.log(filteredData)
       }
-
       this.setState({
         marsdata: filteredData,
         isLoading: false
       })
       console.log(this.state.marsdata)
+      console.log(filteredData)
     })
-
     .catch(error => this.setState({ error, isLoading: false }))
+  }
+
+  componentDidMount() {
+    this.filterData()
   }
   
   render() {
