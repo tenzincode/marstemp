@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import * as moment from 'moment'
+import 'bulma/css/bulma.css'
 import './App.css'
 
 import axios from 'axios'
@@ -53,23 +54,27 @@ class App extends Component {
     
     return (
       <React.Fragment>
-        <div>
-          <h1>Mars Temps</h1>
-          {!isLoading ? (
-            marsdata.map(marstemp => {
-              const { sol, date, temp } = marstemp
-              return (
-                <div key={sol}>
-                  <h2>Sol: {sol}</h2>
-                  <p>Earth date: {moment(date).format('LLLL')}</p>
-                  <p>Temperature: {temp} Fahrenheit</p>
-                </div>
-              )
-            })
-          ) : (
-            <p>Loading...</p>
-          )}
-        </div>
+        <section className="hero">
+          <div className="hero-body">
+            <div className="container">
+              <h1 className="title is-1">Mars Temps</h1>
+              {!isLoading ? (
+                marsdata.map(marstemp => {
+                  const { sol, date, temp } = marstemp
+                  return (
+                    <div className="box sol has-text-white" key={sol}>
+                      <h2>Sol: {sol}</h2>
+                      <p>Earth date: {moment(date).format('LLLL')}</p>
+                      <p>Temperature: {temp} °Fahrenheit</p>
+                    </div>
+                  )
+                })
+              ) : (
+                <p>Loading...</p>
+              )}
+            </div>
+          </div>
+        </section>
       </React.Fragment>
     )
   }
