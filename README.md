@@ -1,4 +1,8 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# MARSTEMP
+
+## Description
+
+Marstemp gathers daily weather measurements (temperature, wind, pressure) from the surface of Mars at the Elysium Planitia, a flat smooth plain near Mars' equator.
 
 ## Available Scripts
 

@@ -1,15 +1,20 @@
 @import url('https://fonts.googleapis.com/css?family=Cormorant&display=swap');
 
 html {
+  height: 100%;
   background: url(img/bonneville_crater.jpg) no-repeat center left fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  overflow: hidden;
 }
 
-h1 {
+body {
+  min-height: 100%;
+  min-width: 100%;
+}
+
+h1, h2, .title, .subtitle, .hero, .footer {
   font-family: 'Cormorant', serif;
 }
 
@@ -18,18 +23,37 @@ code {
     monospace;
 }
 
-.card {
-  background-color: rgba(0,0,0,0.5) !important;
-  color: white !important;
-  margin: 20px !important;
-}
-
 #nav-toggle-state {
   display: none;
 }
 
 #nav-toggle-state:checked ~ .navbar-menu {
   display: block;
+}
+
+.card {
+  background-color: rgba(0,0,0,0.5) !important;
+  color: white !important;
+  margin: 20px 0px 20px 20px !important;
+}
+
+.hero {
+  background-color: rgba(0,0,0,0.6) !important;
+}
+
+.articles > .row {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.articles > .row::-webkit-scrollbar {
+  display: none;
+}
+
+.column {
+  flex: 0 0 auto;
 }
 
 @media screen and (max-width: 1023px) {
