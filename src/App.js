@@ -116,7 +116,7 @@ class App extends Component {
                 <span className="navbar-item">
                   <a href="https://github.com/citizenofearth/marstemp.git" target="_blank" rel="noopener noreferrer" className="button is-success is-inverted">
                     <span className="icon">
-                      <i className="ion-ionic"></i>
+                      <i className="fab fa-github"></i>
                     </span>
                     <span>Code</span>
                   </a>
@@ -183,11 +183,31 @@ class App extends Component {
         </div>
         {/* END MAIN */}
 
+        <nav className="level">
+          <div className="level-left">
+            <a href="/" className="level-item" aria-label="reply">
+              <span className="icon is-small">
+                <i className="fas fa-reply" aria-hidden="true"></i>
+              </span>
+            </a>
+            <a href="/" className="level-item" aria-label="retweet">
+              <span className="icon is-small">
+                <i className="fas fa-retweet" aria-hidden="true"></i>
+              </span>
+            </a>
+            <a href="/" className="level-item" aria-label="like">
+              <span className="icon is-small">
+                <i className="fas fa-heart" aria-hidden="true"></i>
+              </span>
+            </a>
+          </div>
+        </nav>
+
         {/* START FOOTER */}
         <footer className="footer">
           <div className="content has-text-centered">
             <p>
-              <strong>Marštemp</strong> by <a href="https://tenzin.ca">Tenzin Namgyal</a>. The source code is licensed <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
+              <strong>Marštemp</strong> by <a href="https://tenzin.ca">Tenzin Namgyal</a>. The source code is licensed <a href="http://opensource.org/licenses/mit-license.php">MIT</a>.
             </p>
           </div>
         </footer>
