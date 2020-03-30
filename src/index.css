@@ -31,6 +31,10 @@ code {
   display: block;
 }
 
+.navbar {
+  background-color: #ffffff00 !important;
+}
+
 .card {
   background-color: rgba(0,0,0,0.5) !important;
   color: white !important;
@@ -57,13 +61,10 @@ code {
 }
 
 @media screen and (max-width: 1023px) {
-  .navbar {
-    background-color: #ffffff00 !important;
-  }
   .navbar-menu {
     background-color: rgba(0,0,0,0.6) !important;
   }
-
+  
   .navbar-item, .navbar-link {
     color: #ffc7a2 !important;
   }
