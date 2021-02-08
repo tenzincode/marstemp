@@ -27,10 +27,10 @@ class App extends Component {
       console.log(sols)
       for (const sol in data) {
         if (sols.indexOf(sol) > -1) {
-          // console.log('Sol: ' + sol)
-          // console.log('Date: ' + data[sol]['First_UTC'])
-          // console.log('Temp: ' + data[sol]['AT']['av'] + " F")
-          // console.log('--------------------------------------------')
+          console.log('Sol: ' + sol)
+          console.log('Date: ' + data[sol]['First_UTC'])
+          console.log('Temp: ' + data[sol]['AT']['av'] + " F")
+          console.log('--------------------------------------------')
           filteredData.push({
             sol: `${sol}`,
             date: data[sol]['First_UTC'],
@@ -42,8 +42,8 @@ class App extends Component {
         marsdata: filteredData,
         isLoading: false
       })
-      console.log(this.state.marsdata)
-      console.log(filteredData)
+      console.log('marsdata: ', this.state.marsdata)
+      console.log('filteredData: ', filteredData)
     })
     .catch(error => this.setState({ error, isLoading: false }))
   }
@@ -90,7 +90,7 @@ class App extends Component {
     
     return (
       <React.Fragment>
-        <div className="content-wrap">
+        <section className="content-wrap">
           <Nav />
 
           {/* START HERO */}
@@ -105,7 +105,7 @@ class App extends Component {
           {/* END HERO */}
 
           {/* START MAIN */}
-          <div className="container">
+          <section className="container">
             {/* START WEATHER */}
             <section className="articles">
               <div className="row columns">
@@ -146,7 +146,7 @@ class App extends Component {
                 </div>
               </div>
             </section>
-          </div>
+          </section>
           {/* END MAIN */}
 
           {/* START FOOTER */}
@@ -158,7 +158,7 @@ class App extends Component {
             </div>
           </footer>
           {/* END FOOTER */}
-        </div>
+        </section>
       </React.Fragment>
     )
   }
