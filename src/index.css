@@ -15,6 +15,10 @@ body {
   margin: 0 0 192px;
 }
 
+section {
+  margin-bottom: 20px;
+}
+
 #root {
   position: relative;
   min-height: 100vh;
@@ -55,7 +59,6 @@ code {
 .card {
   background-color: rgba(0,0,0,0.5) !important;
   color: white !important;
-  margin: 20px 0px 20px 20px !important;
 }
 
 .hero {
