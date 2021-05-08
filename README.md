@@ -4,6 +4,8 @@
 
 Marstemp gathers daily weather measurements (temperature, wind, pressure) from the surface of Mars at the Elysium Planitia, a flat smooth plain near Mars' equator.
 
+[Visit the page](https://marstemp.tenzin.ca)
+
 ## Available Scripts
 
 In the project directory, you can run:
