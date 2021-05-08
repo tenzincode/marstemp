@@ -19,25 +19,26 @@ class App extends Component {
    */
   filterData() {
     const url = `${API_URL}`
-    const filteredData = []
+    let filteredData = []
 
     axios.get(url).then(response => response.data)
     .then((data) => {
-      const sols = data['sol_keys']
-      console.log(sols)
-      for (const sol in data) {
-        if (sols.indexOf(sol) > -1) {
-          console.log('Sol: ' + sol)
-          console.log('Date: ' + data[sol]['First_UTC'])
-          console.log('Temp: ' + data[sol]['AT']['av'] + " F")
-          console.log('--------------------------------------------')
+      console.log(data)
+
+      for (const prop in data.validity_checks) {
+        if (!isNaN(prop)) {
+          console.log('Sol: ', `${[prop]}`)
+          // console.log('Date: ', `${data.validity_checks[prop]['First_UTC']}`)
+          // console.log('Temp: ', `${data[prop]['AT']['av']}`, " F")
+          // console.log('--------------------------------------------')
           filteredData.push({
-            sol: `${sol}`,
-            date: data[sol]['First_UTC'],
-            temp: data[sol]['AT']['av']
+            sol: `${prop}`,
+            // date: data[prop]['First_UTC'],
+            // temp: data[prop]['AT']['av']
           })
         }
       }
+
       this.setState({
         marsdata: filteredData,
         isLoading: false
@@ -98,7 +99,7 @@ class App extends Component {
             <div className="hero-body">
               <div className="container has-text-centered">
                 <h2 className=" has-text-white title">Latest Weather at Elysium Planitia</h2>
-                <p className=" has-text-white subtitle">InSight is taking daily weather measurements (temperature, wind, pressure) on the surface of Mars at Elysium Planitia, a flat, smooth plain near Mars’ equator.</p>
+                <p className=" has-text-white subtitle">Daily weather measurements (temperature, wind, pressure) taken by InSight on the surface of Mars at Elysium Planitia, a flat, smooth plain near Mars’ equator.</p>
               </div>
             </div>
           </section>
