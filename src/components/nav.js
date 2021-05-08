@@ -28,7 +28,7 @@ export class Nav extends Component {
               Documentation
             </a>
             <span className="navbar-item">
-              <a href="https://github.com/citizenofearth/marstemp.git" target="_blank" rel="noopener noreferrer" className="button is-success is-inverted">
+              <a href="https://github.com/citizenofearth/marstemp.git" target="_blank" rel="noopener noreferrer" className="button is-black">
                 <span className="icon">
                   <i className="fab fa-github"></i>
                 </span>
