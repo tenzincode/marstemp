@@ -6,6 +6,8 @@ Marstemp gathers daily weather measurements (temperature, wind, pressure) from t
 
 [Visit the page](https://marstemp.tenzin.ca)
 
+![Marstemp](https://github.com/citizenofearth/marstemp/thumbnail.png "Marstemp")
+
 ## Available Scripts
 
 In the project directory, you can run:
