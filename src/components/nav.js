@@ -1,10 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-export class Nav extends Component {
-  render() {
-    return (
-      /* START NAV */
-      <nav className="navbar">
+export const Nav = () => {
+  return (
+    /* START NAV */
+    <nav className="navbar">
       <div className="container">
         <div className="navbar-brand">
           <a href="/" className="navbar-item">
@@ -40,6 +39,5 @@ export class Nav extends Component {
       </div>
     </nav>
     /* END NAV */
-    )
-  }
+  );
 }
