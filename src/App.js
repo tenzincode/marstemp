@@ -26,18 +26,22 @@ function App() {
         console.log(data);
         
         let filteredData = [];
-        for (const prop in data.validity_checks) {
-          if (!isNaN(prop)) {
-            console.log('Sol: ', `${[prop]}`);
-            // console.log('Date: ', `${data.validity_checks[prop]['First_UTC']}`)
-            // console.log('Temp: ', `${data[prop]['AT']['av']}`, " F")
-            // console.log('--------------------------------------------')
-            filteredData.push({
-              sol: `${prop}`,
-              // date: data[prop]['First_UTC'],
-              // temp: data[prop]['AT']['av']
-            });
-          }
+        // Use sol_keys to access the available sols
+        if (data.sol_keys && data.sol_keys.length > 0) {
+          data.sol_keys.forEach(sol => {
+            if (data[sol]) {
+              console.log('Sol: ', sol);
+              console.log('Date: ', data[sol]['First_UTC']);
+              console.log('Temp: ', data[sol]['AT'] ? data[sol]['AT']['av'] : null, " F");
+              console.log('--------------------------------------------');
+              
+              filteredData.push({
+                sol: sol,
+                date: data[sol]['First_UTC'],
+                temp: data[sol]['AT'] ? data[sol]['AT']['av'] : null
+              });
+            }
+          });
         }
         
         setMarsdata(filteredData);
