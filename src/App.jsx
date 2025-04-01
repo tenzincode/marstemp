@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useTransition } from 'react'
-import * as moment from 'moment'
+import moment from 'moment'
 import { Nav } from './components/nav'
-import 'bulma/css/bulma.css'
+import 'bulma/css/bulma.min.css'
 import './App.css'
 
 import axios from 'axios'
