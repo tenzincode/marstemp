@@ -13,7 +13,7 @@ import Footer from './components/Footer'
 import useMarsWeather from './hooks/useMarsWeather'
 
 function App() {
-  const { marsdata, isLoading, errors } = useMarsWeather();
+  const { marsdata, isLoading, error, refresh } = useMarsWeather();
 
   /**
    * Function to handle hamburger menu action
@@ -62,6 +62,18 @@ function App() {
 
         {/* Main Content */}
         <section className="container">
+          {/* Error Display */}
+          {error && (
+            <div className="notification is-danger">
+              <button className="delete" onClick={() => window.location.reload()}></button>
+              <strong>Error: </strong> {error.message}
+              <br />
+              <button className="button is-small is-light mt-2" onClick={refresh}>
+                Try Again
+              </button>
+            </div>
+          )}
+
           {/* Weather Cards Section */}
           <WeatherCard marsdata={marsdata} isLoading={isLoading} />
 
