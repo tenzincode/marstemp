@@ -1,8 +1,9 @@
 import { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 
-// Move API key to an environment variable in a real application
-const API_URL = 'https://api.nasa.gov/insight_weather/?api_key=REMOVED_API_KEY&feedtype=json&ver=1.0';
+// Use environment variable for API key
+const NASA_API_KEY = import.meta.env.VITE_NASA_API_KEY || 'DEMO_KEY';
+const API_URL = `https://api.nasa.gov/insight_weather/?api_key=${NASA_API_KEY}&feedtype=json&ver=1.0`;
 
 /**
  * Custom hook for fetching Mars weather data from NASA's InSight API
